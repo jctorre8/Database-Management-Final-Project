@@ -61,8 +61,8 @@ mysql_close($con);
 		</form>
     </td>
     <td>
-    	<form action="query5.php" method="post">
-	    	<input id="button" type="submit" name="query5" value="All Cars Ordered by Manufacturing date" />
+    	<form action="query4.php" method="post">
+	    	<input id="button" type="submit" name="query4" value="All Cars Ordered by Manufacturing date" />
 		</form>
     </td>
   </tr>
@@ -73,8 +73,8 @@ mysql_close($con);
 		</form>
     </td>
     <td>
-    	<form action="query6.php" method="post">
-	    	<input id="button" type="submit" name="query6" value="All Brake and Aceleration CAN Signals" />
+    	<form action="query5.php" method="post">
+	    	<input id="button" type="submit" name="query5" value="All Brake and Aceleration CAN Signals" />
 		</form>
     </td>
   </tr>
