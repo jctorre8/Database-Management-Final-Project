@@ -13,29 +13,31 @@ echo "<center><h1>Automotive Controller Database for SER 322</h1></center> <hr /
 mysql_select_db("Cars", $con);
 
 
-$sql = "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID ";
+$sql = "SELECT DISTINCT Controller.Name AS Controller, `CAN Signals`.Address AS SignalAddress, `CAN Signals`.Name AS SignalName,`CAN Signals`.`Units` AS SignalUnits
+FROM `CAN Signals`, Controller 
+WHERE `CAN Signals`.Controller = Controller.ControllerID";
 $myData = mysql_query($sql, $con);
 
 echo "<h3>Displays all CAN Signals as well as the name of which name of the controller that produces the signals.</h3>";
-echo "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID";
+echo "SELECT DISTINCT Controller.Name AS Controller, `CAN Signals`.Address AS SignalAddress, `CAN Signals`.Name AS SignalName,`CAN Signals`.`Units` AS SignalUnits
+FROM `CAN Signals`, Controller 
+WHERE `cansignals`.Controller = Controller.ControllerID";
 echo "<br/>";
 echo "<br/>";
 echo "<table border=1>
 <tr>
-<th>ControllerName</th>
-<th>CarMake</th>
-<th>CarModel</th>
-<th>CarYear</th>
-<th>CarType</th>
+<th>Controller</th>
+<th>SignalAddress</th>
+<th>SignalName</th>
+<th>SignalUnits</th>
 </tr>";
 while($record = mysql_fetch_array($myData)) {
 	echo "<form action=query2.php method=post>";
 	echo "<tr>";
-	echo "<td>" . $record['ControllerName'] . " </td>";
-	echo "<td>" . $record['CarMake'] . " </td>"; 
-	echo "<td>" . $record['CarModel'] . " </td>";
-	echo "<td>" . $record['CarYear'] . " </td>";
-	echo "<td>" . $record['CarType'] . " </td>";
+	echo "<td>" . $record['Controller'] . " </td>";
+	echo "<td>" . $record['SignalAddress'] . " </td>"; 
+	echo "<td>" . $record['SignalName'] . " </td>";
+	echo "<td>" . $record['SignalUnits'] . " </td>";
 	echo "</tr>";
 	echo "</form>";
 }
