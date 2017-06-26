@@ -9,12 +9,12 @@ $con = @mysql_connect("localhost", "root", "");
 if(!$con) {
 	die("Cannot connect: " . mysql_error());
 }
-echo "<center><h1>Car Database for SER 322</h1></center> <hr />";
+echo "<center><h1>Automotive Controller Database for SER 322</h1></center> <hr />";
 mysql_select_db("Cars", $con);
 
 //update
 if (isset($_POST['update'])) {
-	$UpdateQuery = "UPDATE `can signals` SET `Address`='$_POST[address]', Name='$_POST[name]', `Units`='$_POST[units]' WHERE `Address`='$_POST[hidden]'";  
+	$UpdateQuery = "UPDATE `can signals` SET `Address`='$_POST[address]', Controller='$_POST[controller]', Name='$_POST[name]', `Units`='$_POST[units]' WHERE `Address`='$_POST[hidden]'";  
     mysql_query($UpdateQuery, $con);
 };
 
@@ -26,7 +26,7 @@ if (isset($_POST['delete'])) {
 
 //add
 if (isset($_POST['add'])) {
-	$AddQuery = "INSERT INTO `can signals` (`Address`, Name, `Units`) VALUES ('$_POST[uaddress]', '$_POST[uname]', '$_POST[uunits]')";
+	$AddQuery = "INSERT INTO `can signals` (`Address`, Controller, Name, `Units`) VALUES ('$_POST[uaddress]','$_POST[ucontroller]', '$_POST[uname]', '$_POST[uunits]')";
     mysql_query($AddQuery, $con);
 };
 
@@ -37,6 +37,7 @@ echo "<h3>Can Signals Table</h3>";
 echo "<table border=1>
 <tr>
 <th>Address</th>
+<th>Controller</th>
 <th>Name</th>
 <th>Units</th>
 </tr>";
@@ -44,6 +45,7 @@ while($record = mysql_fetch_array($myData)) {
 	echo "<form action=table5.php method=post>";
 	echo "<tr>";
 	echo "<td>" . "<input type=text name=address value=" . $record['Address'] . " </td>";
+	echo "<td>" . "<input type=text name=controller value=" . $record['Controller'] . " </td>";
 	echo "<td>" . "<input type=text name=name value=" . $record['Name'] . " </td>"; 
 	echo "<td>" . "<input type=text name=units value=" . $record['Units'] . " </td>";
 	echo "<td>" . "<input type=hidden name=hidden value=" . $record['Address'] . " </td>";
@@ -55,6 +57,7 @@ while($record = mysql_fetch_array($myData)) {
 echo "<form action=table5.php method=post>";
 echo "<tr>";
 echo "<td><input type=text name=uaddress></td>";
+echo "<td><input type=text name=ucontroller></td>";
 echo "<td><input type=text name=uname></td>";
 echo "<td><input type=text name=uunits></td>";
 echo "<td>" . "<input type=submit name=add value=add" . " </td>";
