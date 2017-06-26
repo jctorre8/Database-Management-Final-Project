@@ -13,26 +13,26 @@ echo "<center><h1>Automotive Controller Database for SER 322</h1></center> <hr /
 mysql_select_db("Cars", $con);
 
 
-$sql = "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID ";
+$sql = "SELECT DISTINCT Connector.Manufacturer AS 'Connector Manufacturer', Connector.'Pin Type' AS PinType, Component.Name AS 'Component Name', Controller.Name AS 'Controller Name' FROM Connector, 'Car Component' AS Component, Controller WHERE Connector.PinType LIKE 'male' AND Connector.ConnectorID = Component.Connector AND Component.Controller = Controller.ControllerID";
 $myData = mysql_query($sql, $con);
 
-echo "<h3>Controllers by Continental and the Cars they are on</h3>";
+$result2 = mysql_query($sql) or die($sql."<br/><br/>".mysql_error());
+
+echo "<h3>Manufacturer and PinType of all Male connectors, with component and controller</h3>";
 echo "<table border=1>
 <tr>
+<th>Connector Manufacturer</th>
+<th>Pin Type</th>
+<th>Component Name</th>
 <th>Controller Name</th>
-<th>Car Make</th>
-<th>Car Model</th>
-<th>Car Trim</th>
-<th>Car Year</th>
 </tr>";
 while($record = mysql_fetch_array($myData)) {
 	echo "<form action=query1.php method=post>";
 	echo "<tr>";
-	echo "<td>" . "<input type=text name=carid value=" . $record['ControllerName'] . " </td>";
-	echo "<td>" . "<input type=text name=make value=" . $record['CarMake'] . " </td>"; 
-	echo "<td>" . "<input type=text name=model value=" . $record['CarModel'] . " </td>";
-	echo "<td>" . "<input type=text name=type value=" . $record['CarType'] . " </td>";
-	echo "<td>" . "<input type=text name=year value=" . $record['CarYear'] . " </td>";
+	echo "<td>" . "<input type=text name=manufacturer value=" . $record['Connector Manufacturer'] . " </td>";
+	echo "<td>" . "<input type=text name=pintype value=" . $record['PinType'] . " </td>"; 
+	echo "<td>" . "<input type=text name=compname value=" . $record['Component Name'] . " </td>";
+	echo "<td>" . "<input type=text name=contname value=" . $record['Controller Name'] . " </td>";
 	echo "</tr>";
 	echo "</form>";
 }
