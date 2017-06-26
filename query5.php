@@ -18,6 +18,8 @@ $myData = mysql_query($sql, $con);
 
 echo "<h3>Displays all CAN Signals relating to pedals (either Brake or Acceleration pedals), as well as the name of the associated controller and the make, model, and year of the car. </h3>";
 echo "SELECT DISTINCT theSignals.Name as SignalName, theSignals.Units as SigUnits, Controller.Name as ControllerName, Controller.Supplier as ConSupplier, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear FROM `CAN Signals` as theSignals, Controller, Car WHERE theSignals.Controller = Controller.ControllerID and Controller.CarID = Car.CarID and theSignals.Name LIKE '%Pedal%'";
+echo "<br/>";
+echo "<br/>";	
 echo "<table border=1>
 <tr>
 <th>Signal Name</th>
