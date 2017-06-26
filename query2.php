@@ -19,6 +19,7 @@ WHERE `CAN Signals`.Controller = Controller.ControllerID";
 $myData = mysql_query($sql, $con);
 
 echo "<h3>Displays all CAN Signals as well as the name of which name of the controller that produces the signals.</h3>";
+echo "SELECT DISTINCT Controller.Name AS Controller, `CAN Signals`.Address AS SignalAddress, `CAN Signals`.Name AS SignalName,`CAN Signals`.`Units` AS SignalUnits FROM `CAN Signals`, Controller WHERE `CAN Signals`.Controller = Controller.ControllerID"
 echo "<br/>";
 echo "<br/>";
 echo "<table border=1>
