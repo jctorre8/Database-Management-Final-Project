@@ -16,7 +16,9 @@ mysql_select_db("Cars", $con);
 $sql = "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID ";
 $myData = mysql_query($sql, $con);
 
+	
 echo "<h3>Controllers by Continental and the Cars they are on</h3>";
+echo "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID"
 echo "<table border=1>
 <tr>
 <th>Controller Name</th>
