@@ -13,10 +13,11 @@ echo "<center><h1>Automotive Controller Database for SER 322</h1></center> <hr /
 mysql_select_db("Cars", $con);
 
 
-$sql = "SELECT DISTINCT Connector.Manufacturer AS 'Connector Manufacturer', Connector.'Pin Type' AS PinType, Component.Name AS 'Component Name', Controller.Name AS 'Controller Name' FROM Connector, 'Car Component' AS Component, Controller WHERE Connector.PinType LIKE 'male' AND Connector.ConnectorID = Component.Connector AND Component.Controller = Controller.ControllerID";
+$sql = "SELECT DISTINCT Connector.Manfacturer AS 'Connector Manufacturer', Connector.`Pin Type`, `Car Component`.Name AS 'Component Name', Controller.Name AS 'Controller Name' FROM Connector, `Car Component`, Controller WHERE Connector.`Pin Type` LIKE 'male' AND Connector.ConnectorID = `Car Component`.Connector AND `Car Component`.Controller = Controller.ControllerID";
 $myData = mysql_query($sql, $con);
 
 $result2 = mysql_query($sql) or die($sql."<br/><br/>".mysql_error());
+
 
 echo "<h3>Manufacturer and PinType of all Male connectors, with component and controller</h3>";
 echo "<table border=1>
@@ -30,7 +31,7 @@ while($record = mysql_fetch_array($myData)) {
 	echo "<form action=query1.php method=post>";
 	echo "<tr>";
 	echo "<td>" . "<input type=text name=manufacturer value=" . $record['Connector Manufacturer'] . " </td>";
-	echo "<td>" . "<input type=text name=pintype value=" . $record['PinType'] . " </td>"; 
+	echo "<td>" . "<input type=text name=pintype value=" . $record['Pin Type'] . " </td>"; 
 	echo "<td>" . "<input type=text name=compname value=" . $record['Component Name'] . " </td>";
 	echo "<td>" . "<input type=text name=contname value=" . $record['Controller Name'] . " </td>";
 	echo "</tr>";
