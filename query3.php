@@ -21,6 +21,8 @@ $result2 = mysql_query($sql) or die($sql."<br/><br/>".mysql_error());
 
 echo "<h3>Manufacturer and PinType of all Male connectors, with component and controller</h3>";
 echo "SELECT DISTINCT Connector.Manfacturer AS 'Connector Manufacturer', Connector.`Pin Type`, `Car Component`.Name AS 'Component Name', Controller.Name AS 'Controller Name' FROM Connector, `Car Component`, Controller WHERE Connector.`Pin Type` LIKE 'male' AND Connector.ConnectorID = `Car Component`.Connector AND `Car Component`.Controller = Controller.ControllerID";
+echo "<br/>";
+echo "<br/>";
 echo "<table border=1>
 <tr>
 <th>Connector Manufacturer</th>
