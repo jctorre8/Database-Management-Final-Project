@@ -16,23 +16,26 @@ mysql_select_db("Cars", $con);
 $sql = "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID ";
 $myData = mysql_query($sql, $con);
 
-echo "<h3>Controllers by Continental and the Cars they are on</h3>";
+echo "<h3>Displays all CAN Signals as well as the name of which name of the controller that produces the signals.</h3>";
+echo "SELECT DISTINCT Controller.Name as ControllerName, Car.Make as CarMake, Car.Model as CarModel, Car.Year as CarYear, Car.Type as CarType FROM (Controller, Car) WHERE Controller.Supplier = 'Continental' and Car.CarID = Controller.CarID";
+echo "<br/>";
+echo "<br/>";
 echo "<table border=1>
 <tr>
-<th>Controller Name</th>
-<th>Car Make</th>
-<th>Car Model</th>
-<th>Car Trim</th>
-<th>Car Year</th>
+<th>ControllerName</th>
+<th>CarMake</th>
+<th>CarModel</th>
+<th>CarYear</th>
+<th>CarType</th>
 </tr>";
 while($record = mysql_fetch_array($myData)) {
-	echo "<form action=query1.php method=post>";
+	echo "<form action=query2.php method=post>";
 	echo "<tr>";
-	echo "<td>" . "<input type=text name=carid value=" . $record['ControllerName'] . " </td>";
-	echo "<td>" . "<input type=text name=make value=" . $record['CarMake'] . " </td>"; 
-	echo "<td>" . "<input type=text name=model value=" . $record['CarModel'] . " </td>";
-	echo "<td>" . "<input type=text name=type value=" . $record['CarType'] . " </td>";
-	echo "<td>" . "<input type=text name=year value=" . $record['CarYear'] . " </td>";
+	echo "<td>" . $record['ControllerName'] . " </td>";
+	echo "<td>" . $record['CarMake'] . " </td>"; 
+	echo "<td>" . $record['CarModel'] . " </td>";
+	echo "<td>" . $record['CarYear'] . " </td>";
+	echo "<td>" . $record['CarType'] . " </td>";
 	echo "</tr>";
 	echo "</form>";
 }
