@@ -17,6 +17,7 @@ $sql = "SELECT DISTINCT Make, Model, Type, Year from Car ORDER BY Year DESC ";
 $myData = mysql_query($sql, $con);
 
 echo "<h3>Controllers by Continental and the Cars they are on</h3>";
+echo "SELECT DISTINCT Make, Model, Type, Year from Car ORDER BY Year DESC"
 echo "<table border=1>
 <tr>
 <th>Car Make</th>
