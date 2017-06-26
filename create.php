@@ -139,7 +139,7 @@ mysql_query($sql, $con);
 
 
 //Create CAN Signals Table
-$sql = "CREATE TABLE `CANSignals` (
+$sql = "CREATE TABLE `CAN Signals` (
 	`Address` varchar(25) PRIMARY KEY NOT NULL,
 	Controller int NOT NULL,
 	Name varchar(255) NOT NULL,
